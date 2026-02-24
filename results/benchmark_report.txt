@@ -1,0 +1,28 @@
+==================================================
+ATN DEER AGE RECOGNITION - LATENCY BENCHMARK
+==================================================
+
+Device: CPU | Batch Size 1
+----------------------------------------
+  Avg Latency:  17.56 ms
+  p99 Latency:  19.02 ms
+  Throughput:   56.94 FPS
+
+Device: CPU | Batch Size 32
+----------------------------------------
+  Batch Latency:358.87 ms
+  Per Image:    11.21 ms
+  Throughput:   89.17 FPS
+
+Device: CUDA | Batch Size 1
+----------------------------------------
+  Avg Latency:  7.97 ms
+  p99 Latency:  10.78 ms
+  Throughput:   125.49 FPS
+
+Device: CUDA | Batch Size 32
+----------------------------------------
+  Batch Latency:19.60 ms
+  Per Image:    0.61 ms
+  Throughput:   1632.34 FPS
+

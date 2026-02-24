@@ -1,0 +1,26 @@
+# Professional ML .gitignore for ATN Deer Project
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data and large files (Too large for GitHub)
+deer data/
+data/
+*.zip
+*.pdf
+*.json
+
+# Model Checkpoints (9GB+ - Excluded to avoid push failure)
+checkpoints/
+
+# Environments
+.venv
+env/
+venv/
+ENV/
+
+# OS generated files
+.DS_Store
+Thumbs.db

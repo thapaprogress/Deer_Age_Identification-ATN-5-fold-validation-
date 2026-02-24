@@ -1,0 +1,91 @@
+Augmented Triplet Network for Individual
+Organism and Unique Object Classiﬁcation for
+Reliable Monitoring of Ezoshika Deer
+1stY ojiro Harie
+Department of Integrated Media
+Wakkanai Hokusei Gakuen University
+1-2290-28 Wakabadai, Wakkanai, Hokkaido, Japan
+y-harie@wakhok.ac.jp2ndSangam Babu Neupane
+Department of Integrated Media
+Wakkanai Hokusei Gakuen University
+1-2290-28 Wakabadai, Wakkanai, Hokkaido, Japan
+sangam18@wakhok.ac.jp
+3rdBishnu Prasad Gautam
+Department of Economic Informatics
+Kanazawa Gakuen University
+10 Suemachi, Kanazawa, Ishikawa, Japan
+gautam@kanazawa-gu.ac.jp4thShiratori Norio
+Research and Development Initiative
+Chuo University
+1-13-27 Kasuga, Bunkyo-ku, Tokyo, Japan
+norio@riec.tohoku.ac.jp
+Abstract —Wild Deer’s grazing in farmers and villager’s ﬁeld
+has caused serious troubles for the residents and concerned
+authorities here in Northern Hokkaido of Japan. Furthermore,
+the number of deer in northern Japan is increasing rapidly
+leading to increment in road accidents which is also becoming
+a serious problem that needs to be handled. Several procedures
+have been followed to avoid or at least minimize the destruction
+caused by the white-tailed deer, but a solid solution is yet to
+be found. To this context, we are proposing a highly effective
+solutions to identify the individual wild deer and pinpoint the
+most trouble causing group of deer’s using augmented triplet
+network, a novel technique of computer vision. Initially the deer
+are recognized and classiﬁed individually which will help us track
+the deer and know the behavior of the deer in depth. Our research
+method identiﬁes individual deer using several steps where we
+initially take video feed which is further divided into several
+frames. The extracted frames are then cleaned and processed for
+the training efﬁciency. The cleaned frames are then sent to the
+Convolution Network where the Nested triplet loss is calculated
+for the maximum accuracy.
+Index T erms —Triplet Loss, Augmented Triplet Network,
+Unique Individual Detection, Metric Learning
+I. I NTRODUCTION
+The number of Ezo Sika deer ( Cervus nippon yesoensis )
+in Japan has been increasing rapidly. The damage caused by
+Ezo Sika deer ranges from collisions with deer, impact on
+vegetation, and damage to agriculture and forestry. In order to
+prevent such kinds of damage, it is necessary to manage not
+only the number of deer’s in a systematic manner but also to
+conduct population surveys and monitoring scientiﬁcally. The
+indices are used to calculate the number of individuals applied
+aerial surveys, visual counts by hunters, number of captures,
+and number of sightings. The objectives of this study are of
+two folds: (1) to investigate the behavior of the same individual
+(group) and ʢ2) to automate the counting of individuals. Weadopted the triplet loss model, which is one of the machine
+learning models, to identify the same individual.
+Then, we propose the Augmented Triplet loss(A TL) model
+in section III. A TL is a model that learns to clearly distinguish
+between groups that are close in distance in embedded space.
+Fig. 1 shows the overall picture of this research. Firstly, we
+explain the data-processing part. We have used the Raspberry
+Pi and cameras. The server will be crowded with masses of
+images and will be less efﬁcient. Thus to minimize the data
+overload in the server, the Raspberry Pi is programmed to
+send only the feed while the camera captures a deer during
+the surveillance. Secondly, we collected video images of Ezo
+Sika deer from a ﬁxed-point camera set up outdoors. Then, we
+automatically extract frames from the video images and label
+them. We classiﬁed the image dataset into training data and
+test data. Then, from the obtained training data, we train CNNs
+and train classiﬁcations using the Triplet loss function. After a
+certain number of Mis exceeded, the proposed loss function
+called Augmented Triplet loss(A TL) is used for training. The
+details of A TL are explained in Section III. A TL is designed
+to reduce the learning time and memory cost of the existing
+triplet loss. In this study, we classiﬁed images of Ezo Sika deer,
+but it can be applied to various types of image classiﬁcation.
+II. R ESEARCH ISSUES
+The main research issue in this work is how to determine
+the individual deer and how to recognize the most problematic
+group of deer so that the precaution measures can be designed
+more properly. To determine the individual deer, we need to
+discriminate it by using distance as a core metric. For our
+research content, we needed to ﬁnd the differences between the
+individual deer’s depending on different features. The measure
+of distance between the anchors need to be calculated in order
+1972021 Ninth International Symposium on Computing and Networking Workshops (CANDARW)
+978-1-6654-2835-4/21/$31.00 ©2021 IEEE
+DOI 10.1109/CANDARW53999.2021.000392021 Ninth International Symposium on Computing and Networking Workshops (CANDARW) | 978-1-6654-2835-4/21/$31.00 ©2021 IEEE | DOI: 10.1109/CANDARW53999.2021.00039
+Authorized licensed use limited to: Suwa University of Science. Downloaded on July 07,2025 at 07:06:05 UTC from IEEE Xplore.  Restrictions apply. 

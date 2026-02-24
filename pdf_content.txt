@@ -1,0 +1,333 @@
+
+================================================================================
+PAGE 1
+================================================================================
+
+Augmented Triplet Network for Individual
+Organism and Unique Object Classiﬁcation for
+Reliable Monitoring of Ezoshika Deer
+1stY ojiro Harie
+Department of Integrated Media
+Wakkanai Hokusei Gakuen University
+1-2290-28 Wakabadai, Wakkanai, Hokkaido, Japan
+y-harie@wakhok.ac.jp2ndSangam Babu Neupane
+Department of Integrated Media
+Wakkanai Hokusei Gakuen University
+1-2290-28 Wakabadai, Wakkanai, Hokkaido, Japan
+sangam18@wakhok.ac.jp
+3rdBishnu Prasad Gautam
+Department of Economic Informatics
+Kanazawa Gakuen University
+10 Suemachi, Kanazawa, Ishikawa, Japan
+gautam@kanazawa-gu.ac.jp4thShiratori Norio
+Research and Development Initiative
+Chuo University
+1-13-27 Kasuga, Bunkyo-ku, Tokyo, Japan
+norio@riec.tohoku.ac.jp
+Abstract —Wild Deer’s grazing in farmers and villager’s ﬁeld
+has caused serious troubles for the residents and concerned
+authorities here in Northern Hokkaido of Japan. Furthermore,
+the number of deer in northern Japan is increasing rapidly
+leading to increment in road accidents which is also becoming
+a serious problem that needs to be handled. Several procedures
+have been followed to avoid or at least minimize the destruction
+caused by the white-tailed deer, but a solid solution is yet to
+be found. To this context, we are proposing a highly effective
+solutions to identify the individual wild deer and pinpoint the
+most trouble causing group of deer’s using augmented triplet
+network, a novel technique of computer vision. Initially the deer
+are recognized and classiﬁed individually which will help us track
+the deer and know the behavior of the deer in depth. Our research
+method identiﬁes individual deer using several steps where we
+initially take video feed which is further divided into several
+frames. The extracted frames are then cleaned and processed for
+the training efﬁciency. The cleaned frames are then sent to the
+Convolution Network where the Nested triplet loss is calculated
+for the maximum accuracy.
+Index T erms —Triplet Loss, Augmented Triplet Network,
+Unique Individual Detection, Metric Learning
+I. I NTRODUCTION
+The number of Ezo Sika deer ( Cervus nippon yesoensis )
+in Japan has been increasing rapidly. The damage caused by
+Ezo Sika deer ranges from collisions with deer, impact on
+vegetation, and damage to agriculture and forestry. In order to
+prevent such kinds of damage, it is necessary to manage not
+only the number of deer’s in a systematic manner but also to
+conduct population surveys and monitoring scientiﬁcally. The
+indices are used to calculate the number of individuals applied
+aerial surveys, visual counts by hunters, number of captures,
+and number of sightings. The objectives of this study are of
+two folds: (1) to investigate the behavior of the same individual
+(group) and ʢ2) to automate the counting of individuals. Weadopted the triplet loss model, which is one of the machine
+learning models, to identify the same individual.
+Then, we propose the Augmented Triplet loss(A TL) model
+in section III. A TL is a model that learns to clearly distinguish
+between groups that are close in distance in embedded space.
+Fig. 1 shows the overall picture of this research. Firstly, we
+explain the data-processing part. We have used the Raspberry
+Pi and cameras. The server will be crowded with masses of
+images and will be less efﬁcient. Thus to minimize the data
+overload in the server, the Raspberry Pi is programmed to
+send only the feed while the camera captures a deer during
+the surveillance. Secondly, we collected video images of Ezo
+Sika deer from a ﬁxed-point camera set up outdoors. Then, we
+automatically extract frames from the video images and label
+them. We classiﬁed the image dataset into training data and
+test data. Then, from the obtained training data, we train CNNs
+and train classiﬁcations using the Triplet loss function. After a
+certain number of Mis exceeded, the proposed loss function
+called Augmented Triplet loss(A TL) is used for training. The
+details of A TL are explained in Section III. A TL is designed
+to reduce the learning time and memory cost of the existing
+triplet loss. In this study, we classiﬁed images of Ezo Sika deer,
+but it can be applied to various types of image classiﬁcation.
+II. R ESEARCH ISSUES
+The main research issue in this work is how to determine
+the individual deer and how to recognize the most problematic
+group of deer so that the precaution measures can be designed
+more properly. To determine the individual deer, we need to
+discriminate it by using distance as a core metric. For our
+research content, we needed to ﬁnd the differences between the
+individual deer’s depending on different features. The measure
+of distance between the anchors need to be calculated in order
+1972021 Ninth International Symposium on Computing and Networking Workshops (CANDARW)
+978-1-6654-2835-4/21/$31.00 ©2021 IEEE
+DOI 10.1109/CANDARW53999.2021.000392021 Ninth International Symposium on Computing and Networking Workshops (CANDARW) | 978-1-6654-2835-4/21/$31.00 ©2021 IEEE | DOI: 10.1109/CANDARW53999.2021.00039
+Authorized licensed use limited to: Suwa University of Science. Downloaded on July 07,2025 at 07:06:05 UTC from IEEE Xplore.  Restrictions apply. 
+
+================================================================================
+PAGE 2
+================================================================================
+
+Fig. 1. The overall picture of this research
+to differentiate and categorize the data. There are different
+distance metrics like Euclidean distance calculation [1], [2]which is a metric used to evaluate the distance between thecentroid and the points in a cluster, Cosine similarity [3]which measures the similarity between two vectors. City blockdistance metric method [4] which measures the path betweenthe pixels based on connected neighborhood. Despite the
+availability of different distance metric methods we are using
+metric learning [5] as it aims at automatically constructingtask-speciﬁc distance metrics. In this paper, we implement themetric learning on the deer images using the triplet networkwhich learns useful representations by distance comparisons.
+A. Related works
+Cognitive activities in humans and animals have been stud-
+ied for a long time and many researchers have come up with
+different theories about the ability of kingdom Animalia to rec-ognize and categorize individuals. While several researchersare focused on re-identifying an object or the searching for the
+same individual using the techniques like Siamese and triplet-
+loss [6]. Hierarchical triplet loss [7], quadruplet network [8],Exponential triplet loss [9], Harmonic Triplet loss [10], Adap-tive margin triplet loss [11], Stochastic triplet loss [12] arefew of the variants that are being researched upon. Hierarchicaltriplet loss [7] is said to be capable of automatically collectingtriplets using hierarchical tree which encodes global contextinformation. Deep metric learning has some problems amongwhich random sampling in training convolutional triplet lossis one, and hierarchical triplet loss tries to solve the problemusing a new violate margin [7] which is computed dynamicallybased on hierarchical tree. Another similar research is done byMai Lan Ha and her team where they are trying to solve the
+problem from the original triplet loss by using the adaptivemargins [11] which is computed once before training due to
+which the triplets are not generated after every epoch as inﬁxed margin in triplet loss.
+III. P
+ROPOSED SOLUTION
+A. Triplet Network
+Triplet neural network is a way to train neural networks
+that do not require special architecture and allow us to takecomplex data and project it onto a feature space so wecan identify similarities between different data points. Tripletnetwork [13] is an improvement of the Siamese network [14].In a Triplet network, three input sample images are needed
+the three samples are represented by anchor sample, anchor
+positive, and anchor negative. If we denote the three sampleinputs as x
+a,xp,xnthe positive distance is calculated as
+dp=d(f(xa),f(xp))and negative anchor is calculated as
+dn=d(f(xa),f(xn)). Before applying the triple network,
+we pick an anchor sample then pick the positive sample fromthe same category whereas the negative sample is picked froma different category. The triplet loss for the triplet network isdeﬁned as L
+triplet =[dp−dn+m] wheremis the margin
+which is the desired distance between the positive anchor andthe negative anchor.
+B. Augmented Triplet Network (ATN)
+We proposed the Augmented triplet loss function as an
+algorithm to improve the existing triplet loss function. The
+triplet loss network with the Augmented triplet loss function is
+called the Augmented triplet network(A TN). A TN is a methodto clearly distinguish the classes which are close in distance. Inthe (1), where dis a function that returns the distance between
+two elements. For a class C
+icorresponding to labeling, let the
+center of gravity, i.e. the average value of the elements inC
+i, be a dummy anchor di. The closeness between classes is
+198
+Authorized licensed use limited to: Suwa University of Science. Downloaded on July 07,2025 at 07:06:05 UTC from IEEE Xplore.  Restrictions apply. 
+
+================================================================================
+PAGE 3
+================================================================================
+
+Fig. 2. A concept of A TN loss function model
+represented by the margin β, and the A TN searches for class
+pairs (Ci,Cj)such that the following equation is satisﬁed.
+di=/summationtext
+xn∈Cif(xn)
+|Ci|
+d(di,dj)≤β (1)
+The element f(cik)of the same class as class Ciis opti-
+mized to be closer to the dummy anchor di, and the element
+f(cjk)of classCjwhich is close to class Ciis optimized
+to be farther from di. Note that the dummy anchors are only
+elements set for the optimization calculation, but they do not
+correspond to the actual train data. Fig. 2 shows a simpliﬁed
+diagram of how the A TN loss function is learned. The training
+is performed in such a way that the following two constraints
+are satisﬁed.
+d(di,f(cjk))≥β,c jk∈Cj (2)
+d(di,f(cik))≤α,c ik∈Ci (3)
+Learning to satisfy this constraint ensures that d(di,dj/prime)<
+βis satisﬁed for the newly obtained dj/prime. Fig. 2 shows a
+simpliﬁed diagram of how the A TN loss function is learned.
+C. Implementation
+Python Package Pytorch [15] is used for the training and
+testing of our dataset. For the learning process in our model,
+we are referencing the Pytorch metric learning [16] to sepa-
+rate the classes which are then further improvised using the
+augmented triplet learning. The augmented triplet method of
+ours searches the center point of the class.
+The Center of a class is used to group the class together
+resulting in the clear separation of the similar class from
+the different class. Several key functions like losses, miners
+(mining function), and reducers (loss reducing function) are
+considered and efﬁciently utilized when training the data. The
+distance between the anchors is calculated on the basis of
+cosine similarity. The triplet losses which are greater than
+0.1 are reduced by the Threshold Reducer. Triplet miners
+will output the tuple of size 3 which includes sample anchor,
+positive anchor, and the negative anchor. The batch size is
+set to 4 letting the training to be done on the chunks of4. The batch is trained in a total of 10 epochs. Our model
+contains two convolutional layers with a 3 and 6 channel
+input each convolution layer is followed by the max-pooling
+of(2,2). We have used the stride of 2 to deal with the
+variation of the dataset. The mining function takes the margin
+of 0.2 where the margin is the difference between the anchor-
+positive distance and anchor-negative distance. The pairs are
+selected based on the margin. All the anchors which violate
+the margin are considered triplets. The class mining part is
+used to generate pairs of classes that violate (1). The dummy
+anchors are generated by calculating the center of gravity of
+each of the obtained class pairs. In the Augmented Mining
+part, from the obtained dummy anchors di, we generate as
+many pairs as the sum of the size of the class Ciand the
+size ofCjas|Ci|+|Cj|. In the Augmented Loss calculation
+part, the dummy anchors are used to calculate the pairs that
+violate the (2), (3). Afterward, optimization is performed and
+the learning is evaluated.
+D. Practical Application and Monitoring
+Our research not only focuses on the implementation of the
+algorithm for the detection of the individual deer but also the
+development and execution of the system or the architecture
+for the ways to implement the algorithm along with the use
+of IoT to reduce the accidents and damage on the ﬁelds done
+by the Ezo Sika on the northern part of the Hokkaido Japan.
+Our research plan includes the use of Raspberry Pi, cameras,
+and the server for monitoring and analyzing the feed. Fig. 3
+represents a system with a server at the center and cameras at
+ﬁve points to observe Ezo Sika deer.
+In our ﬁrst Step we are planning to put the camera on
+several locations within the Soya region within a distance
+range of approx. 200m apart the camera will be attached with
+the Raspberry Pi device for the computing power. The stations
+will be sending feeds from the camera to the server located at
+the university. The server located at the university will receive
+the feed and analyze the feed using our model to identify the
+deer. research for the further ﬁndings will also be done at the
+university.
+Fig. 3. Deer image capturing system around the university
+199
+Authorized licensed use limited to: Suwa University of Science. Downloaded on July 07,2025 at 07:06:05 UTC from IEEE Xplore.  Restrictions apply. 
+
+================================================================================
+PAGE 4
+================================================================================
+
+Fig. 4. Embedding space by using t-SNE algorithms
+IV . R ESULT AND DISCUSSION
+A. Experiments
+Proposed augmented triplet loss function has been tested
+on 3-deers dataset and 9-humans dataset. From the video
+data, 1400 images were sampled from a 6-minute video of
+three animals, each shot separately. Among these, 1120 were
+classiﬁed as training data and 280 as test data, and the image
+size was resized to 32*32. For the human set, 9 different
+people were ﬁlmed, and 600 images were sampled from each
+of them. Fig. 4 shows a 2D representation of the training data
+projected onto the embedding space by the t-SNE algorithm.
+The center of each color-coded class is represented by a red
+dot.
+B. comparision
+We compared the number of pairs generated during training
+with loss functions such as HTL and Quadruplet Loss and
+found that A TL generates fewer pairs. In Augmented triplet
+loss, only |Ci+Cj|anchor pairs are needed for each violation
+class pair. If there are a ﬁnite number of kviolating class pairs,
+then the total number of anchor pairs generated is k(|Ci+Cj|).
+Since both kand|Ci+Cj|are at most n, the number of
+anchor pairs generated is O(n2). In this method, the size of
+the feature vector in the embedded space is set to be 10. By
+limiting the number of feature vectors to a small number, the
+memory efﬁciency is improved. We applied our method to the
+deer dataset and tested it. The results show that our method
+can identify the deer with 99.64% accuracy after 10 training
+trials. In the future, we would like to measure the relationship
+between the number of training sessions and the accuracy by
+measuring the execution speed and memory.
+V. C ONCLUSION
+We demonstrated the novel idea of recognizing individual
+trouble making deer by proposing a new method, which we
+termed Augmented Triplet Network in this paper. We found
+that our method recognizes the individual deer with more
+than 99% of accuracy. Due to the static nature of the cam-
+era installed in various locations, the accuracy of individual
+recognition is slightly penalized sometimes however this can
+be increased in two ways. One can be done by increasingthe image and video quality of the camera. The other way
+is by increasing the number of features to be included in
+the classiﬁer. The paper presents a proposed Augmented
+Triplet Network in comparison with the available methods
+(hierarchical triplet loss and stochastic triplet loss and so) and
+also evaluated the method in terms of deer. In the future work,
+we plan to increase the datasets of deers and also upgrade the
+proposed algorithm with other features in order to increase the
+accuracy of recognition. Furthermore, we need to improve the
+performance of the classiﬁer which can be done by increasing
+the number of features. In our future works, we will apply
+our methods to recognize other wild animals thereby helping
+to protect the crops of farmers from further damage.
+REFERENCES
+[1] S. Wesolkowski, “Color image edge detection and segmentation: A com-
+parison of the vector angle and the euclidean distance color similarity
+measures,” Master’s thesis, University of Waterloo, 1999.
+[2] L. Wang, Y . Zhang, and J. Feng, “On the euclidean distance of images,”
+IEEE transactions on pattern analysis and machine intelligence , vol. 27,
+no. 8, pp. 1334–1339, 2005.
+[3] “Cosine Similarity - an overview — ScienceDirect Topics.” https://www.
+sciencedirect.com/topics/computer-science/cosine-similarity/.
+[4] H. Roopa and T. Asha, “Segmentation of x-ray image using city
+block distance measure,” in 2016 International Conference on Control,
+Instrumentation, Communication and Computational Technologies (IC-
+CICCT) . IEEE, 2016, pp. 186–189.
+[5] M. Kaya and H. S ¸ . Bilge, “Deep metric learning: A survey,” Symmetry ,
+vol. 11, no. 9, p. 1066, 2019.
+[6] G. B. Hermon and D. Sharma, “Unique lion identiﬁcation using triplet
+loss and siamese networks,” Revue d’Intelligence Artiﬁcielle , vol. 34,
+no. 6, pp. 693–700, dec 2020.
+[7] W. Ge, “Deep metric learning with hierarchical triplet loss,” in Proceed-
+ings of the European Conference on Computer Vision (ECCV) , 2018, pp.
+269–285.
+[8] W. Chen, X. Chen, J. Zhang, and K. Huang, “Beyond triplet loss: a deep
+quadruplet network for person re-identiﬁcation,” in Proceedings of the
+IEEE conference on computer vision and pattern recognition , 2017, pp.
+403–412.
+[9] E. Urtans, A. Nitkitenko, and V . V ecins, “Exponential triplet loss,” ACM
+International Conference Proceeding Series , pp. 152–158, mar 2020.
+[10] F. Schroff, D. Kalenichenko, and J. Philbin, “Facenet: A uniﬁed embed-
+ding for face recognition and clustering,” in Proceedings of the IEEE
+conference on computer vision and pattern recognition , 2015, pp. 815–
+823.
+[11] M. L. Ha and V . Blanz, “Deep ranking with adaptive margin triplet loss,”
+2021.
+[12] J. R. Pinto and J. S. Cardoso, “Self-Learning with Stochastic Triplet
+Loss,” Proceedings of the International Joint Conference on Neural
+Networks , jul 2020.
+[13] E. Hoffer and N. Ailon, “Deep metric learning using triplet network,”
+inInternational workshop on similarity-based pattern recognition .
+Springer, 2015, pp. 84–92.
+[14] A. Nandy, S. Haldar, S. Banerjee, and S. Mitra, “A survey on applications
+of siamese neural networks in computer vision,” in 2020 International
+Conference for Emerging Technology (INCET) . IEEE, 2020, pp. 1–5.
+[15] N. Ketkar, “Introduction to pytorch,” in Deep learning with python .
+Springer, 2017, pp. 195–208.
+[16] K. Musgrave, S. Belongie, and S.-N. Lim, “Pytorch metric learning,”
+arXiv preprint arXiv:2008.09164 , 2020.
+ACKNOWLEDGEMENT
+This work was supported in part by the Japan Society for
+the Promotion of Science (JSPS) under Grant 19H04101 and
+Grant 18K11273, the Cooperative Research Project Program
+of the Research Institute of Electrical Communication, Tohoku
+University, Japan.
+200
+Authorized licensed use limited to: Suwa University of Science. Downloaded on July 07,2025 at 07:06:05 UTC from IEEE Xplore.  Restrictions apply. 
