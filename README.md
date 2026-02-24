@@ -68,12 +68,35 @@ Due to GitHub's file size limits (100MB per file) and to keep the repository lig
 *   **Raw Dataset (7.4GB)**: [🔗 Download from Google Drive/OneDrive](INSERT_LINK_HERE)
 *   **Pre-trained Checkpoints**: [🔗 Download Trained Weights](INSERT_LINK_HERE)
 
-### 📂 Setup Instructions
-After downloading, place the folders in the root directory relative to the scripts:
-1.  **Dataset**: Extract the images into a folder named `deer data/`. 
-2.  **Models**: Place `.pth` files into a folder named `checkpoints/`.
+### 📂 Setup & Data Walkthrough
 
-> **Note**: These folders are automatically ignored by Git (via `.gitignore`) to prevent accidental uploads.
+To ensure the scripts can find your data and models, follow this specific directory structure.
+
+#### 1. Initial Setup
+Place your downloaded files so the root directory looks like this:
+```text
+atn/
+├── deer data/             <-- Place extracted raw images here
+│   ├── Deer_id_1 (age 5)/
+│   ├── Deer_id_2 (age 3)/
+│   └── ...
+├── checkpoints/           <-- Place .pth files here
+├── training/              <-- (Already in Repo)
+├── utils/                 <-- (Already in Repo)
+└── dashboard/             <-- (Already in Repo)
+```
+
+#### 2. Data Pipeline Walkthrough
+The system follows a strict pipeline to prepare raw wildlife data for the ATN model:
+
+1.  **Stage 1: Raw Ingestion**: The system looks into `deer data/`. This folder contains original high-resolution images, often in `.HEIC` format from mobile devices.
+2.  **Stage 2: Standardization**: Running `python utils/image_converter.py` performs three tasks:
+    *   Finds every `.HEIC` and `.JPG` file recursively.
+    *   Standardizes filenames and converts everything to `.JPG`.
+    *   Creates a new folder `data/raw/` where the processed images are stored.
+3.  **Stage 3: Dataset Mapping**: The `utils/data_loader.py` then reads from `data/raw/`, mapping the folder names (e.g., "age 5") to integer labels for the neural network.
+
+> **Pro Tip**: Keep the folder names in `deer data/` exactly as they were (containing the word "age X") so the regex parser can correctly identify the age labels.
 
 ---
 
