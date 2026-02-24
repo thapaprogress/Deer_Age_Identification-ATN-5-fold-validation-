@@ -65,8 +65,8 @@ Instead of relying on a single model, the system trains **5 independent experts*
 Due to GitHub's file size limits (100MB per file) and to keep the repository lightweight, the raw dataset (~7.4GB) and pre-trained model checkpoints are hosted externally.
 
 ### 📥 Download Links
-*   **Raw Dataset (7.4GB)**: [🔗 Download from Google Drive/OneDrive](INSERT_LINK_HERE)
-*   **Pre-trained Checkpoints**: [🔗 Download Trained Weights](INSERT_LINK_HERE)
+*   **Raw Dataset (7.4GB)**: [🔗 Download from OneDrive](https://mbustb-my.sharepoint.com/:f:/g/personal/progress_jung_thapa_mbust_edu_np/IgA3CNY1W8elR6yZyTNvgvRgAXMzT3a5ydbwe4Lifuu67xE?e=1V2ye6)
+*   **Pre-trained Checkpoints**: [🔗 Download Trained Weights](https://mbustb-my.sharepoint.com/:f:/g/personal/progress_jung_thapa_mbust_edu_np/IgDLFVOR6yZnR4BmlAkgfYsGATC3w2oGnhz3-Gm5xaRjBzw?e=HfhrO3)
 
 ### 📂 Setup & Data Walkthrough
 
