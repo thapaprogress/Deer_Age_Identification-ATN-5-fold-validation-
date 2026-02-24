@@ -60,7 +60,24 @@ Instead of relying on a single model, the system trains **5 independent experts*
 
 ---
 
-## 🚀 Detailed Implementation Guide
+## � Dataset & Model Weights
+
+Due to GitHub's file size limits (100MB per file) and to keep the repository lightweight, the raw dataset (~7.4GB) and pre-trained model checkpoints are hosted externally.
+
+### 📥 Download Links
+*   **Raw Dataset (7.4GB)**: [🔗 Download from Google Drive/OneDrive](INSERT_LINK_HERE)
+*   **Pre-trained Checkpoints**: [🔗 Download Trained Weights](INSERT_LINK_HERE)
+
+### 📂 Setup Instructions
+After downloading, place the folders in the root directory relative to the scripts:
+1.  **Dataset**: Extract the images into a folder named `deer data/`. 
+2.  **Models**: Place `.pth` files into a folder named `checkpoints/`.
+
+> **Note**: These folders are automatically ignored by Git (via `.gitignore`) to prevent accidental uploads.
+
+---
+
+## �🚀 Detailed Implementation Guide
 
 ### 1. Prerequisites & Installation
 Ensure you have an NVIDIA GPU for optimal training performance.
